@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <title>Thermi - luchtvochtigheid week</title>
+</head>
+
+<body class="bg-top">
+    <div class="px-3 pt-24 text-center">
+        <img class="w-24 mx-auto" src="images/thermi-logo.svg" alt="thermi-logo">
+        <h1 class="text-l font-bold uppercase spacing pt-3">Luchtvochtigheid</h1>
+    </div>
+
+    <nav class="z-10 px-3 grid grid-cols-4 gap-2 w-screen text-xxs text-center text-white fixed bottom-0 h-20 bg-black uppercase font-bold tracking-widest">
+        <a class="pt-10 bg-db no-hover-white selected" href="dashboard-week.html">Overzicht</a>
+        <a class="pt-10 bg-ct no-hover-white not-selected" href="caretakers.html">Mantelzorgers</a>
+        <a class="pt-10 bg-c no-hover-white not-selected" href="contact.html">Contact</a>
+        <a class="pt-10 bg-l no-hover-white not-selected" href="login.html">Afmelden</a>
+    </nav>
+
+    <div class="mx-3 mt-3 bg-white shadow-md border-radius-1 max-w-full max-h-full">
+        <div class="grid grid-cols-2 text-center">
+            <a class="detail-week bg-white shadow-md" href="humidity-week.html">Week</a>
+            <a class="detail-month bg-gray shadow-md" href="humidity-month.html">Month</a>
+        </div>
+        <div id="curve_chart" style="width: 97%;"></div>
+    </div>
+
+    <div class="text-center mt-3 mb-24">
+        <a class="btn-return no-hover-white" href="dashboard-week.html">Terug naar overzicht</a>
+    </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Month', 'Luchtvochtigheid'],
+                ['Jan', 58],
+                ['Feb', 56],
+                ['Mrt', 54],
+                ['Apr', 48],
+                ['Mei', 44],
+                ['Jun', 43],
+                ['Jul', 42],
+                ['Aug', 41],
+                ['Sept', 46],
+                ['Okt', 56],
+                ['Nov', 57],
+                ['Dec', 56]
+            ]);
+
+            var options = {
+                title: 'Luchtvochtigheid in %',
+                curveType: 'function',
+                legend: {
+                    position: 'top',
+                },
+                colors: ['#00F53F']
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+
+</html>
