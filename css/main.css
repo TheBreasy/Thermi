@@ -346,3 +346,20 @@ body {
     display: inline-block;
     margin-right: 6px;
 }
+
+@media (min-width: 640px) {
+    .bg-top {
+        background-size: 400px;
+        background-position-x: left;
+    }
+    .bg-top-bottom {
+        background-image: url(../images/background-top.png), url(../images/background-bottom.png);
+        background-repeat: no-repeat;
+        background-position: left top, right bottom;
+        background-size: 400px;
+    }
+    .smpx-20 {
+        padding-right: 5rem!important;
+        padding-left: 5rem!important;
+    }
+}
