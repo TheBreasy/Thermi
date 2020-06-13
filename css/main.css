@@ -6,6 +6,11 @@ body {
     padding-top: 50%;
 }
 
+.px-3 {
+    padding-right: .75rem!important;
+    padding-left: .75rem!important;
+}
+
 .bg-top {
     background-image: url(../images/background-top.png);
     background-repeat: no-repeat;
