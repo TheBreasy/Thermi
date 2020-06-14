@@ -7,8 +7,8 @@ body {
 }
 
 .px-3 {
-    padding-right: .75rem!important;
-    padding-left: .75rem!important;
+    padding-right: .75rem !important;
+    padding-left: .75rem !important;
 }
 
 .bg-top {
@@ -357,14 +357,16 @@ body {
         background-size: 400px;
         background-position-x: left;
     }
+
     .bg-top-bottom {
         background-image: url(../images/background-top.png), url(../images/background-bottom.png);
         background-repeat: no-repeat;
         background-position: left top, right bottom;
         background-size: 400px;
     }
+
     .smpx-20 {
-        padding-right: 5rem!important;
-        padding-left: 5rem!important;
+        padding-right: 5rem !important;
+        padding-left: 5rem !important;
     }
 }

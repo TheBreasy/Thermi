@@ -17,7 +17,7 @@
     </div>
 
     <nav class="z-20 px-3 grid grid-cols-4 gap-2 w-screen text-xxs text-center text-white fixed bottom-0 h-20 bg-black uppercase font-bold tracking-widest smpx-20">
-        <a class="pt-10 bg-db no-hover-white selected" href="dashboard-week.html">Overzicht</a>
+        <a class="pt-10 bg-db no-hover-white selected" href="dashboard-week.php">Overzicht</a>
         <a class="pt-10 bg-ct no-hover-white not-selected" href="caretakers.html">Mantelzorgers</a>
         <a class="pt-10 bg-c no-hover-white not-selected" href="contact.html">Contact</a>
         <a class="pt-10 bg-l no-hover-white not-selected" href="login.html">Afmelden</a>
@@ -25,14 +25,14 @@
 
     <div class="mx-3 mt-3 bg-white shadow-md border-radius-1 max-w-full max-h-full sm:mx-20">
         <div class="grid grid-cols-2 text-center">
-            <a class="detail-week bg-white shadow-md z-10" href="humidity-week.html">Week</a>
-            <a class="detail-month bg-gray shadow-md z-10" href="humidity-month.html">Maand</a>
+            <a class="detail-week bg-white shadow-md z-10" href="humidity-week.php">Week</a>
+            <a class="detail-month bg-gray shadow-md z-10" href="humidity-month.php">Maand</a>
         </div>
         <div id="curve_chart" style="width: 97%;"></div>
     </div>
 
     <div class="text-center mt-3 mb-24">
-        <a class="btn-return no-hover-white" href="dashboard-week.html">Terug naar overzicht</a>
+        <a class="btn-return no-hover-white" href="dashboard-week.php">Terug naar overzicht</a>
     </div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

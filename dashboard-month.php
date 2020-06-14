@@ -1,3 +1,9 @@
+<?php
+include_once 'dbh.inc.php';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +13,7 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <title>Thermi - dashboard maand</title>
 </head>
 
@@ -17,28 +24,71 @@
     </div>
 
     <nav class="z-20 px-3 grid grid-cols-4 gap-2 w-screen text-xxs text-center text-white fixed bottom-0 h-20 bg-black uppercase font-bold tracking-widest sm:px-20">
-        <a class="pt-10 bg-db no-hover-white selected" href="dashboard-week.html">Overzicht</a>
+        <a class="pt-10 bg-db no-hover-white selected" href="dashboard-week.php">Overzicht</a>
         <a class="pt-10 bg-ct no-hover-white not-selected" href="caretakers.html">Mantelzorgers</a>
         <a class="pt-10 bg-c no-hover-white not-selected" href="contact.html">Contact</a>
         <a class="pt-10 bg-l no-hover-white not-selected" href="login.html">Afmelden</a>
     </nav>
 
     <div class="p-3 grid grid-cols-2 gap-4 text-center uppercase font-bold sm:px-20 sm:gap-8 sm:pb-8">
-        <a class="h-40 p-2 shadow-md border-radius-1 bg-white no-hover-black" href="temperature-week.html">
+        <a class="h-40 p-2 shadow-md border-radius-1 bg-white no-hover-black" href="temperature-week.php">
             <div class="space-y-3">
                 <img class="w-10 mx-auto" src="images/temperature.svg" alt="temperature">
                 <h2 class="text-xs spacing">Temperatuur</h2>
-                <p class="text-2xl">22<sup>°C</sup></p>
-                <p class="details">Details</p>
+                <p id="tempdata" class="text-2xl">
+
+                    <?php
+
+                    $sql = "SELECT * FROM dht11 ORDER BY ID DESC LIMIT 1";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<span id='temperatureData'>";
+                            echo $row['temperature'];
+                            echo "</span>";
+                        }
+                    } else {
+                        echo "there are no data";
+                    }
+
+                    ?>
+                    <sup>°C</sup>
+                </p>
+                <p margin="-20px" class="details">Details</p>
             </div>
         </a>
 
-        <a class="h-40 p-2 shadow-md border-radius-1 bg-white no-hover-black" href="humidity-week.html">
+        <a class="h-40 p-2 shadow-md border-radius-1 bg-white no-hover-black" href="humidity-week.php">
             <div class="space-y-3">
                 <img class="w-10 mx-auto" src="images/humidity.svg" alt="humidity">
                 <h2 class="text-xs spacing">Vochtigheid</h2>
-                <p class="text-2xl">43<sup>%</sup></p>
-                <p class="details">Details</p>
+                <p class="text-2xl">
+
+
+                    <?php
+
+                    $sql = "SELECT * FROM dht11 ORDER BY ID DESC LIMIT 1";
+
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+
+                            echo "<span id='humidityData'>";
+                            echo $row['humidity'];
+                            echo "</span>";
+                        }
+                    } else {
+                        echo "there are no data";
+                    }
+
+                    ?>
+                    <sup>%</sup>
+
+
+
+
+                    <p class="details">Details</p>
+                </p>
             </div>
         </a>
     </div>
@@ -65,11 +115,15 @@
         <div class="grid grid-cols-4 text-center">
             <div></div>
             <div></div>
-            <a class="dashboard-week bg-white shadow-md z-10" href="dashboard-week.html">Week</a>
-            <a class="dashboard-month bg-gray shadow-md z-10" href="dashboard-month.html">Maand</a>
+            <a class="dashboard-week bg-white shadow-md z-10" href="dashboard-week.php">Week</a>
+            <a class="dashboard-month bg-gray shadow-md z-10" href="dashboard-month.php">Maand</a>
         </div>
         <div id="curve_chart" style="width: 97%;"></div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -109,6 +163,44 @@
             chart.draw(data, options);
         }
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            ajax_call = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "load-temperature.php",
+                    dataType: "html",
+                    success: function(response) {
+                        console.log(response);
+                        $("#temperatureData").html(response);
+                    }
+                });
+            }
+
+            setInterval(ajax_call, 5000);
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            ajax_call = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "load-humidity.php",
+                    dataType: "html",
+                    success: function(response) {
+                        console.log(response);
+                        $("#humidityData").html(response);
+                    }
+                });
+            }
+
+            setInterval(ajax_call, 5000);
+        });
+    </script>
+
 </body>
 
 </html>
