@@ -23,14 +23,14 @@ include_once 'dbh.inc.php';
         <h1 class="text-l font-bold uppercase spacing pt-3">Overzicht</h1>
     </div>
 
-    <nav class="z-20 px-3 grid grid-cols-4 gap-2 w-screen text-xxs text-center text-white fixed bottom-0 h-20 bg-black uppercase font-bold tracking-widest sm:px-20">
+    <nav class="z-20 px-3 grid grid-cols-4 gap-2 w-screen text-xxs text-center text-white fixed bottom-0 h-20 bg-black uppercase font-bold tracking-widest smpx-20">
         <a class="pt-10 bg-db no-hover-white selected" href="dashboard-week.php">Overzicht</a>
         <a class="pt-10 bg-ct no-hover-white not-selected" href="caretakers.html">Mantelzorgers</a>
         <a class="pt-10 bg-c no-hover-white not-selected" href="contact.html">Contact</a>
         <a class="pt-10 bg-l no-hover-white not-selected" href="login.html">Afmelden</a>
     </nav>
 
-    <div class="p-3 grid grid-cols-2 gap-4 text-center uppercase font-bold sm:px-20 sm:gap-8 sm:pb-8">
+    <div class="p-3 grid grid-cols-2 gap-4 text-center uppercase font-bold smpx-20 sm:gap-8 sm:pb-8">
         <a class="h-40 p-2 shadow-md border-radius-1 bg-white no-hover-black" href="temperature-week.php">
             <div class="space-y-3">
                 <img class="w-10 mx-auto" src="images/temperature.svg" alt="temperature">
@@ -85,15 +85,13 @@ include_once 'dbh.inc.php';
                     <sup>%</sup>
 
 
-
-
                     <p class="details">Details</p>
                 </p>
             </div>
         </a>
     </div>
 
-    <div class="pb-3 px-3 grid grid-cols-2 gap-4 text-center uppercase font-bold sm:px-20 sm:gap-8 sm:pb-8">
+    <div class="pb-3 px-3 grid grid-cols-2 gap-4 text-center uppercase font-bold smpx-20 sm:gap-8 sm:pb-8">
         <div class="h-40 p-2 shadow-md border-radius-1 bg-white no-hover-black">
             <div class="space-y-3">
                 <img class="w-10 mx-auto" src="images/consumption.svg" alt="consumption">

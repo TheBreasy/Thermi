@@ -42,19 +42,16 @@ include_once 'dbh.inc.php';
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<p>";
+                            echo "<span id='temperatureData'>";
                             echo $row['temperature'];
-                            echo "<sup>°C</sup></p>";
+                            echo "</span>";
                         }
                     } else {
                         echo "there are no data";
                     }
 
                     ?>
-
-
-
-
+                    <sup>°C</sup>
 
                 </p>
                 <p class="details">Details</p>
@@ -66,6 +63,7 @@ include_once 'dbh.inc.php';
                 <img class="w-10 mx-auto" src="images/humidity.svg" alt="humidity">
                 <h2 class="text-xs spacing">Vochtigheid</h2>
                 <p class="text-2xl">
+
                     <?php
 
                     $sql = "SELECT * FROM dht11 ORDER BY ID DESC LIMIT 1";
@@ -73,16 +71,16 @@ include_once 'dbh.inc.php';
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<p>";
+                            echo "<span id='humidityData'>";
                             echo $row['humidity'];
-                            echo " <sup>%</sup></p>";
+                            echo "</span>";
                         }
                     } else {
                         echo "there are no data";
                     }
 
                     ?>
-
+                    <sup>%</sup>
 
 
                 </p>
@@ -119,6 +117,7 @@ include_once 'dbh.inc.php';
         <div id="curve_chart" style="width: 97%;"></div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {
@@ -152,6 +151,47 @@ include_once 'dbh.inc.php';
             chart.draw(data, options);
         }
     </script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            ajax_call = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "load-temperature.php",
+                    dataType: "html",
+                    success: function(response) {
+                        console.log(response);
+                        $("#temperatureData").html(response);
+                    }
+                });
+            }
+
+            setInterval(ajax_call, 5000);
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            ajax_call = function() {
+                $.ajax({
+                    type: "GET",
+                    url: "load-humidity.php",
+                    dataType: "html",
+                    success: function(response) {
+                        console.log(response);
+                        $("#humidityData").html(response);
+                    }
+                });
+            }
+
+            setInterval(ajax_call, 5000);
+        });
+    </script>
+
+
 </body>
 
 </html>
